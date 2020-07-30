@@ -1,5 +1,5 @@
 /* global p, Hand, Bowl, riceRecipe, eggRecipe, riceStep1,tmPose,createCapture,VIDEO,
-imageMode,CORNER,push,translate,scale,image,pop, currentRecipe*/
+imageMode,CORNER,push,translate,scale,image,pop, currentRecipe, Button*/
 
 /*
 COOKING MAMA PNGS
@@ -22,6 +22,9 @@ let videoStarted = false;
 // let posenetOutput;
 
 let isLoaded = false;
+
+let homeButton;
+
 
 async function init() {
   const modelURL = URL + "model.json";
@@ -127,6 +130,23 @@ p.setup = async function() {
 
   //configure the chosen recipe
   recipe.configure();
+  
+  //home button
+  homeButton = new Button(
+    /* x */ p.width - 100,
+    /* y */ 745,
+    /* w */ 100,
+    /* h */ 30,
+    /* text */ "HOME",
+    /* textSize */ 24,
+    /* textY */ 752,
+    function() {
+      window.location.href =
+        "https://fitfoodie-cssi.glitch.me/index.html"; //can't do screen = "home" b/c that's assoc w/index.html
+      homeButton.isHovered = false;
+    }
+  );
+  homeButton.handle();
 
   p.noLoop();
   await init();
@@ -143,6 +163,12 @@ p.draw = function() {
 
     drawKitchen();
     recipe.handle();
+    p.push();
+    p.fill(colors.YELLOW);
+    p.noStroke();
+    p.rect(p.width-200,p.height-100,500,100);
+    p.pop();
+    homeButton.handle();
 
     tick();
 
@@ -259,7 +285,7 @@ let drawKitchen = function() {
   //drawing stove
   p.stroke(15);
   p.strokeWeight(5);
-  p.fill(colors.GRAY); //gray
+  p.fill(colors.DARK_GRAY); //gray
   p.ellipse(700, 600, 100, 80);
   p.ellipse(700, 600, 70, 50);
   p.line(625, 590, 775, 590);
@@ -275,17 +301,17 @@ let drawKitchen = function() {
   //drawing pot handles
   p.stroke(15);
   p.strokeWeight(3);
-  p.fill(colors.DARK_RED); //dark red
+  p.fill(colors.DARK_PINK);
   p.ellipse(645, 545, 30, 20);
   p.ellipse(755, 545, 30, 20);
   p.fill(colors.DARK_BLUE); //same blue as table
   p.ellipse(650, 545, 30, 12);
   p.ellipse(750, 545, 30, 12);
   //drawing the pot
-  p.fill(colors.DARK_RED); //dark red
+  p.fill(colors.DARK_PINK);
   p.rect(645, 545, 110, 42);
   p.arc(700, 587, 110, 70, 0, p.PI);
-  p.stroke(colors.DARK_RED); //dark red
+  p.stroke(colors.DARK_PINK);
   p.line(648, 587, 752, 587);
   p.fill(colors.GRAY); //gray
   p.stroke(15);
