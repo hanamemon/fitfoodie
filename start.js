@@ -121,7 +121,7 @@ p.setup = function() {
     function() {
       let queryString = "?recipe=" + selectedRecipe;
       window.location.href =
-        "https://fitfoodie-cssi.glitch.me/game.html" + queryString;
+        "https://fitfoodie.me/game.html" + queryString;
       mouseIsReleased = false;
     }
   );
