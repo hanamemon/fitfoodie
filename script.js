@@ -142,7 +142,7 @@ p.setup = async function() {
     /* textY */ 752,
     function() {
       window.location.href =
-        "https://fitfoodie-cssi.glitch.me/index.html"; //can't do screen = "home" b/c that's assoc w/index.html
+        "https://fitfoodie.me/index.html"; //can't do screen = "home" b/c that's assoc w/index.html
       homeButton.isHovered = false;
     }
   );
